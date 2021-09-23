@@ -1,4 +1,4 @@
-# wabot-aq
+# Origami-Bot
 
 Simple WhatsApp Bot
 
