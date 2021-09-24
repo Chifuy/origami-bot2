@@ -80,6 +80,32 @@ module.exports = {
           delete: true,
           antiLink: false,
         }
+        
+        let settings = global.db.data.settings
+        if (typeof !== 'object') global.db.data.settings = {}
+        if (settings) {
+          if (!'anon' in settings) settings.anon = true 
+          if (!'anticall' in settings) settings.anticall = true 
+          if (!'antispam' in settings) settings.antispam = true 
+          if (!'antitroli' in settings) settings.antitroli = true 
+          if (!'backup' in settings) settings.backup = false 
+          if (!isNumber(settings.backupDB)) settings.backupDB = 0
+          if (!'groupOnly' in settings) settings.groupOnly = false 
+          if (!'jadibot' in settings) settings.jadibot = false 
+          if (!'nsfw' in settings) settings.nsfw = true 
+          if (!isNumber(settings.status)) settings.status = 0
+         } else global.db.data.settings = {
+           anon: true,
+           anticall: true,
+           antispam: true,
+           antitroli: true,
+           backup: false,
+           backupDB: 0,
+           groupOnly: false,
+           jadibot: false,
+           nsfw: true,
+           status: 0,
+         }
       } catch (e) {
         console.error(e)
       }
@@ -261,7 +287,7 @@ module.exports = {
             if (e) {
               let text = util.format(e)
               for (let key of Object.values(global.APIKeys))
-                text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
+                text = text.replace(new RegExp(key, 'g'), 'YTBJTS')
               m.reply(text)
             }
           } finally {
