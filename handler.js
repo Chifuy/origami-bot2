@@ -387,12 +387,14 @@ module.exports = {
     if (m.key.fromMe) return
     let chat = global.db.data.chats[m.key.remoteJid]
     if (chat.delete) return
-    await this.reply(m.key.remoteJid, `
-Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
+    await this.sendButton(m.key.remoteJid, `
+「 Anti Delete Detected 」
 
-Untuk mematikan fitur ini, ketik
-*.enable delete*
-`.trim(), m.message, {
+@${m.participant.split`@`[0]} telah menghapus pesan
+
+
+
+`.trim(), '', 'OFF ANTI DELETE', '!enable delete', m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
       }
@@ -417,15 +419,15 @@ Untuk mematikan fitur ini, ketik
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
-    owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
-    mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-    premium: 'Perintah ini hanya untuk member _*Premium*_ !',
-    group: 'Perintah ini hanya dapat digunakan di grup!',
-    private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
+    rowner: 'Command ini hanya dapat digunakan oleh _*Aron*_',
+    owner: 'Command ini hanya dapat digunakan oleh _*Owner Bot*_!',
+    mods: 'Command ini hanya dapat digunakan oleh _*Moderator*_ !',
+    premium: 'Command ini hanya untuk member _*Premium*_ !',
+    group: 'Command ini hanya dapat digunakan di grup!',
+    private: 'Command ini hanya dapat digunakan di Chat Pribadi!',
     admin: 'Perintah ini hanya untuk *Admin* grup!',
     botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
-    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Manusia.16*'
+    unreg: 'Silahkan Registrasi Dulu Kak, Dengan Cara Ketik:\n\n*#reg nama.umur*\n\nContoh: #reg Human.17'
   }[type]
   if (msg) return m.reply(msg)
 }
